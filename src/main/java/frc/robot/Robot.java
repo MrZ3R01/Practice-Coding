@@ -103,9 +103,18 @@ public class Robot extends TimedRobot {
       }
 
       if (controller.getLeftBumperPressed()) {
-        currentArmPos--;
+        if(currentArmPos>0){
+          currentArmPos--;
+        }else{
+          currentArmPos = armPositions.length-1;
+        }
       }else if (controller.getRightBumperPressed()){
         currentArmPos++;
+        if(currentArmPos<armPositions.length-1){
+          currentArmPos++;
+        }else{
+          currentArmPos = 0;
+        }
       }
   }
 
