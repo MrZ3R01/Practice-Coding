@@ -27,8 +27,9 @@ public class Arm {
     }
 
     public void moveArmToPos(double goalPos){
-        arm.setVoltage(MathUtil.clamp(arm_PID.calculate(arm_encoder.getPosition(), goalPos)
-         + arm_Feedforward.calculate(arm_PID.getSetpoint().position,arm_PID.getSetpoint().velocity),-12,12));
+        double currentPID = arm_PID.calculate(arm_encoder.getPosition(), goalPos);
+        double currentFeedForward = arm_Feedforward.calculate(arm_PID.getSetpoint().position,arm_PID.getSetpoint().velocity);
+        moveArm(MathUtil.clamp(currentPID + currentFeedForward,-12,12));
     }
 
 }
