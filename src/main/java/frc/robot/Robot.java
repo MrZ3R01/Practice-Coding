@@ -8,6 +8,7 @@ package frc.robot;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
 
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Subsystems.Arm;
@@ -29,7 +30,6 @@ public class Robot extends TimedRobot {
   private double[] armPositions = {0,1,2};
   private int currentArmPos = 0;
   private double armPos = armPositions[currentArmPos];
-
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -99,7 +99,7 @@ public class Robot extends TimedRobot {
         }
       }else{
         armPos = armPositions[currentArmPos];
-        arm.setArmPos(armPos);
+        arm.moveArmToPos(armPos);
       }
 
       if (controller.getLeftBumperPressed()) {
@@ -115,6 +115,7 @@ public class Robot extends TimedRobot {
           currentArmPos = 0;
         }
       }
+
   }
 
   /** This function is called once when the robot is disabled. */
