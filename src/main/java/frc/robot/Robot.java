@@ -86,7 +86,7 @@ public class Robot extends TimedRobot {
       }else{
         intake.setVoltage(0);
       }
-      if(controller.getXButtonPressed()){
+      if(controller.getRightBumperPressed()){
         manualArm = !manualArm;
       }
       if(manualArm){
