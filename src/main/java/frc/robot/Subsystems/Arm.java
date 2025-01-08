@@ -7,12 +7,14 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 
 public class Arm {
     private CANSparkMax arm = new CANSparkMax(13, MotorType.kBrushless);
     private RelativeEncoder arm_encoder = arm.getEncoder();
     private ArmFeedforward arm_Feedforward = new ArmFeedforward(0.01141, -0.02295, 0.0018501);
-    private ProfiledPIDController arm_PID = new ProfiledPIDController(0, 0, 0, null);
+    private ProfiledPIDController arm_PID = new ProfiledPIDController(0.5, 0, 0,
+    new TrapezoidProfile.Constraints(3,2));
     public Arm(){
         arm.setSmartCurrentLimit(10);
         arm_encoder.setPositionConversionFactor((3.0 / 100) * Math.PI * 2);
